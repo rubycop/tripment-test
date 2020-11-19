@@ -13,9 +13,9 @@ class Api::ProceduresController < ApplicationController
     procedures = Procedure.collect_data_from_source
     head :bad_request and return unless procedures
 
-    # clear db just for example of repeat insertion
+    # clear db just for example to prevent repeated insertion
     Procedure.destroy_all
-    # mass insertion
+    # mass insert
     begin
       result = Procedure.insert_all(prepare_data(procedures))
       # just to be sure that imported list is correct

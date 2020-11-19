@@ -74,7 +74,7 @@ RSpec.describe Api::ProceduresController, type: :controller do
                 expect{ Procedure.insert_all(data) }.not_to raise_error
             end
 
-            context 'when raises an error during mass insertion' do
+            context 'when raises an error during mass insert' do
                 let(:data) { Procedure.last }
                 let(:errors) { ["error explanation"] }
 
@@ -87,6 +87,20 @@ RSpec.describe Api::ProceduresController, type: :controller do
                     expect(parsed_response).to eq(errors)
                 end
             end
+        end
+
+        describe "DataFormatter concern" do
+            subject { described_class.new.prepare_data(procedure_names) }
+            let(:procedure_names) {[
+                "Phage therapy",
+                "Image-guided surgery",
+                "Esophageal motility study"
+            ]}
+
+            it "combines array of names with timestamps to build a hash for mass insert" do
+                expect(subject.map{|hash| hash[:name]}).to eq(procedure_names)
+                expect(subject[0].keys).to eq([:name, :created_at, :updated_at])
+            end 
         end
     end
 end
