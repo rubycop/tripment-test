@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://en.wikipedia.org/404
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Thu, 19 Nov 2020 14:16:22 GMT
+      Server:
+      - mw1262.eqiad.wmnet
+      Cache-Control:
+      - s-maxage=600
+      Content-Type:
+      - text/html; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Age:
+      - '159'
+      X-Cache:
+      - cp3062 miss, cp3056 hit/2
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 86400, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 86400, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=UA:46:Lviv:49.85:24.03:v4; Path=/; secure; Domain=.wikipedia.org
+      - WMF-Last-Access-Global=19-Nov-2020;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        21 Dec 2020 12:00:00 GMT
+      - WMF-Last-Access=19-Nov-2020;Path=/;HttpOnly;secure;Expires=Mon, 21 Dec 2020
+        12:00:00 GMT
+      X-Client-Ip:
+      - 109.251.75.145
+      Content-Length:
+      - '685'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+        <meta charset="utf-8">
+        <title>Not Found</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <style>
+        * { margin: 0; padding: 0; }
+        body { background: #fff; color: #202122; font: 0.938em/1.6 sans-serif; }
+        .content { margin: 7% auto 0; padding: 2em 1em 1em; max-width: 640px; }
+        img { float: left; margin: 0 2em 2em 0; }
+        a img { border: 0; }
+        h1 { margin-top: 1em; font-size: 1.2em; }
+        p { margin: 0.7em 0 1em 0; }
+        a { color: #36c; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        em { color: #72777d; font-style: normal; }
+        </style>
+        <div class="content" role="main">
+        <a href="https://www.wikimedia.org"><img src="https://www.wikimedia.org/static/images/wmf.png" srcset="https://www.wikimedia.org/static/images/wmf-2x.png 2x" alt=Wikimedia width=135 height=135></a>
+        <h1>Page not found</h1>
+        <p><em>/404</em></p>
+        <p>We could not find the above page on our servers.</p>
+        <p><b>Did you mean: <a href="/wiki/404">/wiki/404</a></b></p>
+        <p style="clear:both;">Alternatively, you can visit the <a href="/">Main Page</a> or read <a href="https://en.wikipedia.org/wiki/HTTP_404" title="Wikipedia: HTTP 404">more information</a> about this type of error.</p>
+        </div>
+        </html>
+  recorded_at: Thu, 19 Nov 2020 14:19:01 GMT
+recorded_with: VCR 6.0.0

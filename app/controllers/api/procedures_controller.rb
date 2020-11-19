@@ -1,22 +1,33 @@
 class Api::ProceduresController < ApplicationController
+  include DataFormatter
+
   def search
-    query_params = params[:name]
-    @procedures = Procedure.find_by_name_pattern(query_params)
-    render json: @procedures
+    search_params = params[:name]
+    render_json_ok([]) and return if search_params.empty?
+
+    procedures = Procedure.find_by_name_pattern(search_params)
+    render_json_ok(procedures)
   end
 
-  def load
-    @procedure = Procedure.new(procedure_params)
-    if @procedure.save
-      render json: @procedure, status: :created, location: @procedure
-    else
-      render json: @procedure.errors, status: :unprocessable_entity
+  def create
+    procedures = Procedure.collect_data_from_source
+    head :bad_request and return unless procedures
+
+    # clear db just for example of repeat insertion
+    Procedure.destroy_all
+    # mass insertion
+    begin
+      result = Procedure.insert_all(prepare_data(procedures))
+      # just to be sure that imported list is correct
+      render_json_ok(procedures)
+    rescue ActiveRecord::RecordInvalid => invalid
+      render json: invalid.record.errors, status: :unprocessable_entity
     end
   end
 
   private
 
-  def procedure_params
-    params.require(:procedure).permit(:name)
+  def render_json_ok(resp)
+    render json: resp.to_json, status: :ok
   end
 end

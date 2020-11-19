@@ -1,1 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
+
+#results {
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 20rem;
+}
